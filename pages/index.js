@@ -32,7 +32,7 @@ const Produtos = () => {
     setListProducts(db_products)
   },[])
 
-  const handleNewProducts = () => {
+  const handleNewProduct = () => {
     if (!name) return // pra ver se tem algum value no input 
     if (verifyProductName()) { // verificando se o produto ja existe
       alert("Produto ja cadastrado no sistema!")
@@ -46,9 +46,12 @@ const Produtos = () => {
         "db_products",
         JSON.stringify([...listProducts, { id, name }])
       )
+      
       setListProducts([...listProducts, { id, name }])
+
     } else { // caso não tenha nenhum na lista ainda esse é o primeiro item
       localStorage.setItem("db_products", JSON.stringify([{ id, name }]))
+      
       setListProducts([{ id, name }])
     }
 
@@ -79,7 +82,13 @@ const Produtos = () => {
     if (hasEntries || hasOutputs) {
       alert("Esse produto possui movimentações")
     }
-    }
+
+    const newArray = listProducts.filter((prod) => prod.id !== id) // filtrando os produtos que são diferentes do id que esta sendo removido
+
+    localStorage.setItem("db_products", JSON.stringify(newArray))
+
+    setListProducts(newArray)
+  }
 
   return (
     <Flex h="100vh" flexDirection="column">
@@ -87,6 +96,54 @@ const Produtos = () => {
 
       <Flex w="100%" my="6" maxW={1120} mx="auto" px="6" h="100vh">
         <Sidebar />
+
+        <Box w="100%">
+          <SimpleGrid minChildWidth={240} h="fit-content" spacing="6">
+            <Input
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Nome do produto"
+            />
+            <Button w="40" onClick={handleNewProduct}> 
+              CADASTRAR
+            </Button>
+          </SimpleGrid>
+
+          <Box overflowY="auto" height="80vh">
+            <Table mt="6">
+
+              <Thead>
+                <Tr>
+                  <Th fontWeight="bold" fontSize="14px">
+                    Nome
+                  </Th>
+                  <Th></Th>
+                </Tr>
+              </Thead>
+
+              <Tbody>
+                {listProducts.map((item, i) => (
+                  <Tr key={i}>
+                    <Td color="gray.500">{item.name}</Td>
+                    <Td textAlign="end">
+                      <Button
+                        p="2"
+                        h="auto"
+                        fontSize={11}
+                        color="red.500"
+                        fontWeight="bold"
+                        onClick={() => removeProduct(item.id)}
+                      >
+                        DELETAR
+                      </Button>
+                    </Td>
+                  </Tr>
+                ))}
+              </Tbody>
+
+            </Table>
+          </Box>
+        </Box>
       </Flex>
     </Flex>
   )

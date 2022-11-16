@@ -45,9 +45,9 @@ const SidebarNav = () => {
                         px="4"
                         py="2"
                         borderRadius={5}
-                        bg={asPath === "/" ? "gray.200" : ""}
+                        bg={asPath === "/balance" ? "gray.200" : ""}
                     >
-                        <Link href="/">
+                        <Link href="/balance">
                             <Text fontSize="md" fontWeight="medium" color="gray.500">
                                 SALDO
                             </Text>
@@ -61,9 +61,9 @@ const SidebarNav = () => {
                         px="4"
                         py="2"
                         borderRadius={5}
-                        bg={asPath === "/" ? "gray.200" : ""}
+                        bg={asPath === "/stockEntries" ? "gray.200" : ""}
                     >
-                        <Link href="/">
+                        <Link href="/stockEntries">
                             <Text fontSize="md" fontWeight="medium" color="gray.500">
                                 ENTRADAS
                             </Text>
@@ -77,9 +77,9 @@ const SidebarNav = () => {
                         px="4"
                         py="2"
                         borderRadius={5}
-                        bg={asPath === "/" ? "gray.200" : ""}
+                        bg={asPath === "/stockOutputs" ? "gray.200" : ""}
                     >
-                        <Link href="/">
+                        <Link href="/stockOutputs">
                             <Text fontSize="md" fontWeight="medium" color="gray.500">
                                 SAÍDAS
                             </Text>
