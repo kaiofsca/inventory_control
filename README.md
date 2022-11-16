@@ -12,12 +12,13 @@
 - Hooks (useEffect, useState, useContext)
 - Chakra.ui
 - React icons
+- Vercel
 
 ### 🤖 Link para o deploy:
 
 ##
 
-[Stock control]()
+[Stock control](https://inventory-control-a047pog65-kaiofsca.vercel.app/)
 
 ##
 
